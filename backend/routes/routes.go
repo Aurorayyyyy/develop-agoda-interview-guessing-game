@@ -10,9 +10,11 @@ import (
 )
 
 func SetupRoutes(r *gin.Engine) {
+	r.POST("/register", controllers.Register)
+	
 	r.POST("/login", controllers.Login)
 
-	r.POST("/guess", ).Use(authMiddleware())
+	r.POST("/guess", controllers.Guess).Use(authMiddleware())
 }
 
 func authMiddleware() gin.HandlerFunc {
