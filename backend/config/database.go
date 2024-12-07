@@ -20,6 +20,10 @@ func InIt() *gorm.DB {
 	if err != nil {
 		log.Fatalf("Could not connect to the database: %v", err)
 	}
+	err = performMigration()
+	if err!=nil{
+		log.Fatalf("Could not auto migrate: %v", err)
+	}
 
 	return DB
 
@@ -46,7 +50,13 @@ func connectionDatabase() (*gorm.DB, error) {
 	return db, nil
 }
 
-
+func performMigration() error{
+	err:= DB.AutoMigrate(&models.User{})
+	if err!=nil{
+		return err
+	}
+	return nil
+}
 
 func getEnv(key string, defaultVaule string) string {
 	value:= os.Getenv(key)
