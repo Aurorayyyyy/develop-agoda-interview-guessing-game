@@ -24,8 +24,12 @@ func Guess (c *gin.Context) {
 		guessNumber.Number = generateNumber()
 	}
 	if (guessNumber.Number == int(guessInput.Number)) {
-		c.JSON(http.StatusCreated, gin.H{"message": "create new guess number"})
+		c.JSON(http.StatusCreated, gin.H{"message": "you guess right! Create new guess number"})
 		guessNumber.Number = generateNumber()
+		return
+	} else {
+		c.JSON(http.StatusCreated, gin.H{"message": "you guess wrong"})
+		return
 	}
 }
 

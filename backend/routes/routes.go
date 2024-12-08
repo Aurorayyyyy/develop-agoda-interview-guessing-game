@@ -14,7 +14,7 @@ func SetupRoutes(r *gin.Engine) {
 	
 	r.POST("/login", controllers.Login)
 
-	r.POST("/guess", controllers.Guess).Use(authMiddleware())
+	r.POST("/guess", authMiddleware(), controllers.Guess)
 }
 
 func authMiddleware() gin.HandlerFunc {
