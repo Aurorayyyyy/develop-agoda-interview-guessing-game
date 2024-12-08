@@ -1,4 +1,24 @@
+import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+
 export default function Register() {
+  const usernameRef = useRef('')
+  const passwordRef = useRef('')
+  const [error, setError] = useState('');
+  const navigator = useNavigate();
+  const { signup } = useAuth()
+  const handleSignUp = async (e) => {
+    e.preventDefault()
+    const username = usernameRef.current
+    const password = passwordRef.current
+    const res = await signup(username, password)
+    if (res) {
+      navigator('/login')
+    } else {
+      setError("Invalid input")
+    }
+  }
     return (
       <>
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -9,7 +29,7 @@ export default function Register() {
           </div>
   
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form action="#" method="POST" className="space-y-6">
+            <form onSubmit={handleSignUp} className="space-y-6">
               <div>
                 <label htmlFor="username" className="block text-sm/6 font-medium text-gray-900">
                   Username
@@ -19,6 +39,7 @@ export default function Register() {
                     id="username"
                     name="username"
                     type="username"
+                    ref={ usernameRef }
                     required
                     autoComplete="username"
                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
@@ -37,6 +58,7 @@ export default function Register() {
                     id="password"
                     name="password"
                     type="password"
+                    ref={ passwordRef }
                     required
                     autoComplete="current-password"
                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"

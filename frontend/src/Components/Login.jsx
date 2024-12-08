@@ -75,7 +75,7 @@ export default function Login() {
                   Login
                 </button>
                 <div className="text-sm text-right pr-4">
-                    <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500 underline text-right">
+                    <a href="/signup" className="font-semibold text-indigo-600 hover:text-indigo-500 underline text-right">
                       Sign up
                     </a>
                 </div>
