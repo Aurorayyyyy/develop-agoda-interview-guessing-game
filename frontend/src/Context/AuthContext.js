@@ -39,7 +39,7 @@ export function AuthProvider({ children }) {
       return message;
     } catch (err) {
       console.error('Error:', err);
-      return 'Wrong Input type';
+      return 'Error';
     }
   }
 
