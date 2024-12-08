@@ -75,6 +75,11 @@ export default function Register() {
                 </button>
               </div>
             </form>
+            <div className="text-sm text-right pr-4">
+              <p>
+                {error && <p className="text-lg font-bold text-center text-red-600">{error}</p>}
+              </p>  
+            </div>
   
           </div>
         </div>
