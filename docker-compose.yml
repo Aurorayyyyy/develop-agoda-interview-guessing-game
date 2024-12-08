@@ -1,0 +1,26 @@
+version: "3.2"
+
+services:
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: devpass
+      MYSQL_DATABASE: guessgame
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: devpass
+    ports:
+      - 3306:3306
+
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - 3000:3000
