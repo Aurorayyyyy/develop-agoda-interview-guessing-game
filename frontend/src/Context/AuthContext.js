@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import api from "../api/api";
 
+
 const AuthContext = React.createContext()
 
 export function useAuth() {
@@ -13,6 +14,7 @@ export function AuthProvider({ children }) {
       const res = await api.post('/login', {username: username, password: password})
       const { token } = res.data
       localStorage.setItem('token', token)
+      api.defaults.headers.common['Authorization'] = token
       return true;
     } catch (err) {
       console.error('Login failed:', err);
@@ -31,6 +33,7 @@ export function AuthProvider({ children }) {
   }
   const logout = () => {
     localStorage.removeItem('token')
+    api.defaults.headers.common['Authorization'] = ''
   }
   const guess = async (number) => {
     try {
