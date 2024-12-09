@@ -48,7 +48,7 @@ Before running the application, you need to set up the environment variables.
 cd backend
 ```
 
-And config create `.env` as show in the example `.env.example`
+And create `.env` as show in the example `.env.example`
 
 ```
 DB_HOST=db
