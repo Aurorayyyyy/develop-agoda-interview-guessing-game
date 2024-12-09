@@ -40,7 +40,7 @@ export function AuthProvider({ children }) {
   }
   const guess = async (number) => {
     try {
-      const res = await api.post('/guess', {number: JSON.stringify(number)})
+      const res = await api.post('/guess', {number: number})
       const { message } = res.data
       return message;
     } catch (err) {

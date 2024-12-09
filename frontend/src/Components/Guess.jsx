@@ -13,7 +13,7 @@ export default function GuessPage() {
   }
   const handleGuess = async (e) => {
     e.preventDefault()
-    const number = numberRef.current.value
+    const number = parseInt(numberRef.current.value, 10)
     const res = await guess(number)
     setMsg(res)
   }
