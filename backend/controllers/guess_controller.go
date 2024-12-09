@@ -28,7 +28,7 @@ func Guess (c *gin.Context) {
 		guessNumber.Number = generateNumber()
 		return
 	} else {
-		c.JSON(http.StatusCreated, gin.H{"message": "you guess wrong"})
+		c.JSON(http.StatusOK, gin.H{"message": "you guess wrong"})
 		return
 	}
 }
