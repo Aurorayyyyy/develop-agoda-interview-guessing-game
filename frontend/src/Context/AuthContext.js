@@ -9,7 +9,10 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState({isAuthenticated: false})
+  const [user, setUser] = useState(() => {
+    const token = localStorage.getItem("token");
+    return token ? { isAuthenticated: true } : { isAuthenticated: false };
+  });
   const login = async (username, password) => {
     try {
       const res = await api.post('/login', {username: JSON.stringify(username), password: JSON.stringify(password)})
@@ -50,6 +53,6 @@ export function AuthProvider({ children }) {
   }
 
   return(
-    <AuthContext.Provider value={{login, signup, logout, guess, user}}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{login, signup, logout, guess, user, setUser}}>{children}</AuthContext.Provider>
   )
 }

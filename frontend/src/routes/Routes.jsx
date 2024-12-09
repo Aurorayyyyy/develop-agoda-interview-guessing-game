@@ -10,17 +10,18 @@ const Router = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route element={<UnauthorizedRoutes/>}>
-                    <Route path="/" element={<Login></Login>} />
-                    <Route path="/login" element={<Login/>} />
-                    <Route path="/signup" element={<Signup/>} />
+                <Route element={<UnauthorizedRoutes />}>
+                    <Route path="/" element={<Login />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/signup" element={<Signup />} />
                 </Route>
-                <Route element={<AuthorizedRoute/>}>
-                    <Route path="/guess" element={<Guess/>} />
+
+                <Route element={<AuthorizedRoute />}>
+                    <Route path="/guess" element={<Guess />} />
                 </Route>
             </Routes>
         </BrowserRouter>
     );
-}
+};
 
-export default Router
+export default Router;
