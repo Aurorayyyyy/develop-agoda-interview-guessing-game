@@ -12,7 +12,7 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState({isAuthenticated: false})
   const login = async (username, password) => {
     try {
-      const res = await api.post('/login', {username: username, password: password})
+      const res = await api.post('/login', {username: JSON.stringify(username), password: JSON.stringify(password)})
       const { token } = res.data
       localStorage.setItem('token', token)
       setUser({isAuthenticated: true})
@@ -26,7 +26,7 @@ export function AuthProvider({ children }) {
 
   const signup = async (username, password) => {
     try {
-      await api.post('/signup', {username: username, password: password})
+      await api.post('/signup', {username: JSON.stringify(username), password: JSON.stringify(password)})
       return true;
     } catch (err) {
       console.error('Signup failed:', err);
@@ -40,7 +40,7 @@ export function AuthProvider({ children }) {
   }
   const guess = async (number) => {
     try {
-      const res = await api.post('/guess', {number: number})
+      const res = await api.post('/guess', {number: JSON.stringify(number)})
       const { message } = res.data
       return message;
     } catch (err) {

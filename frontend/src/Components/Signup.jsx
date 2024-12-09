@@ -10,8 +10,8 @@ export default function Register() {
   const { signup } = useAuth()
   const handleSignUp = async (e) => {
     e.preventDefault()
-    const username = usernameRef.current
-    const password = passwordRef.current
+    const username = usernameRef.current.value
+    const password = passwordRef.current.value
     const res = await signup(username, password)
     if (res) {
       navigator('/login')

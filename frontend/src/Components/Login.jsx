@@ -12,8 +12,8 @@ export default function Login() {
   const { login } = useAuth()
   const handleLogin = async (e) => {
     e.preventDefault()
-    const username = usernameRef.current
-    const password = passwordRef.current
+    const username = usernameRef.current.value
+    const password = passwordRef.current.value
     const res = await login(username, password)
     if (res) {
       navigator('/guess')
