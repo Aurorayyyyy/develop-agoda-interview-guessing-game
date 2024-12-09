@@ -37,7 +37,7 @@ A simple web application built with **React**, **Go (Gin)**, and **Docker** that
 
 **Clone the Repository**:
  ```bash
- git clone https://github.com/your-repo-url/develop-agoda-interview-guessing-game.git
+ git clone git@github.com:Aurorayyyyy/develop-agoda-interview-guessing-game.git
  cd develop-agoda-interview-guessing-game
  ```
 
