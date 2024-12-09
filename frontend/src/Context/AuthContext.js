@@ -9,11 +9,13 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
+  const [user, setUser] = useState({isAuthenticated: false})
   const login = async (username, password) => {
     try {
       const res = await api.post('/login', {username: username, password: password})
       const { token } = res.data
       localStorage.setItem('token', token)
+      setUser({isAuthenticated: true})
       api.defaults.headers.common['Authorization'] = token
       return true;
     } catch (err) {
@@ -33,6 +35,7 @@ export function AuthProvider({ children }) {
   }
   const logout = () => {
     localStorage.removeItem('token')
+    setUser({isAuthenticated: false})
     api.defaults.headers.common['Authorization'] = ''
   }
   const guess = async (number) => {
@@ -47,6 +50,6 @@ export function AuthProvider({ children }) {
   }
 
   return(
-    <AuthContext.Provider value={{login, signup, logout, guess}}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{login, signup, logout, guess, user}}>{children}</AuthContext.Provider>
   )
 }
